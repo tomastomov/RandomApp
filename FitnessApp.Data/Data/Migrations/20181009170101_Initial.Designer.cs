@@ -4,14 +4,16 @@ using FitnessApp.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnessApp.Data.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181009170101_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,15 +29,11 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<string>("AuthorId");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(5000);
+                    b.Property<string>("Content");
 
                     b.Property<string>("ImageUrl");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -50,9 +48,7 @@ namespace FitnessApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
@@ -82,9 +78,7 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<string>("AuthorId");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Content");
 
                     b.HasKey("Id");
 
@@ -174,13 +168,9 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Content");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -199,9 +189,7 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<string>("AuthorId");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(2500);
+                    b.Property<string>("Content");
 
                     b.Property<int>("PostId");
 
@@ -223,7 +211,7 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<decimal?>("BodyFat");
+                    b.Property<decimal>("BodyFat");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -233,14 +221,13 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<decimal?>("Height");
+                    b.Property<decimal>("Height");
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -261,7 +248,7 @@ namespace FitnessApp.Data.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
-                    b.Property<decimal?>("Weight");
+                    b.Property<decimal>("Weight");
 
                     b.HasKey("Id");
 

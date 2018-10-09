@@ -10,6 +10,7 @@
     using Data.Data;
     using Data.Models;
     using Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Identity;
 
     public class Startup
     {
@@ -33,8 +34,17 @@
             services.AddDbContext<FitnessAppDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>()
+            services.AddDefaultIdentity<User>(options => 
+            {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<FitnessAppDbContext>();
+
+            
 
             services.AddDomainServices();
 

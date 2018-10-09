@@ -23,20 +23,31 @@
 
                 Task.Run(async () =>
                 {
-                    var adminName = GlobalConstants.Administrator;
+                    var adminName = GlobalConstants.AdministratorRole;
+                    
+                    var exists = await roleManager.RoleExistsAsync(adminName);
 
-                    await CreateRole(roleManager, adminName);
+                    if (!exists)
+                    {
+                        await roleManager.CreateAsync(new IdentityRole
+                        {
+                            Name = adminName
+                        });
+                    }
 
                     var adminUser = await userManager.FindByNameAsync(adminName);
+
 
                     if (adminUser == null)
                     {
                         adminUser = new User
                         {
                             UserName = "admin",
-                            Email = "admin@admin.com"
+                            Name = adminName,
+                            Email = "admin@admin.com",
+                            SecurityStamp = "S0M3RAND0MVALU3"
                         };
-
+                        
                         await userManager.CreateAsync(adminUser, "admin12");
                         await userManager.AddToRoleAsync(adminUser, adminName);
                     }
@@ -47,16 +58,6 @@
             }
 
         }
-        private async static Task CreateRole(RoleManager<IdentityRole> roleManager, string roleName)
-        {
-            var roleNameExists = await roleManager.RoleExistsAsync(roleName);
-
-            if (!roleNameExists)
-            {
-                await roleManager.CreateAsync(new IdentityRole { Name = roleName });
-            }
-
-            return;
-        }
+        
     }
 }
