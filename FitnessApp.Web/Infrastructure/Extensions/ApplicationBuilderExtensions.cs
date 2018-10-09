@@ -42,13 +42,13 @@
                     {
                         adminUser = new User
                         {
-                            UserName = "admin",
+                            UserName = "YourAdminUsername",
                             Name = adminName,
-                            Email = "admin@admin.com",
+                            Email = "YourAdminEmail",
                             SecurityStamp = "S0M3RAND0MVALU3"
                         };
                         
-                        await userManager.CreateAsync(adminUser, "admin12");
+                        await userManager.CreateAsync(adminUser, "YourPassword");
                         await userManager.AddToRoleAsync(adminUser, adminName);
                     }
 
